@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="374px" height="162px" viewBox="0 0 374 162" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 53.2 (72643) - https://sketchapp.com -->
+    <title>Group</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <radialGradient cx="48.6381326%" cy="42.5711862%" fx="48.6381326%" fy="42.5711862%" r="64.1640606%" gradientTransform="translate(0.486381,0.425712),scale(0.514286,1.000000),rotate(90.817551),scale(1.000000,0.801744),translate(-0.486381,-0.425712)" id="radialGradient-1">
+            <stop stop-color="#D8D8D8" stop-opacity="0" offset="0%"></stop>
+            <stop stop-color="#D8D8D8" offset="73.120777%"></stop>
+            <stop stop-color="#D8D8D8" offset="100%"></stop>
+        </radialGradient>
+    </defs>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard-Copy-2" transform="translate(0.000000, -29.000000)">
+            <g id="Group" transform="translate(0.000000, 29.000000)">
+                <path d="M0,0 L374,0 L374,162 L0,162 L0,0 Z M71,1 L71,154 L300,154 L300,1 L71,1 Z" id="Combined-Shape" fill="#D8D8D8"></path>
+                <rect id="Rectangle" fill="url(#radialGradient-1)" x="37" y="-2.84217094e-14" width="315" height="162"></rect>
+            </g>
+        </g>
+    </g>
+</svg>
