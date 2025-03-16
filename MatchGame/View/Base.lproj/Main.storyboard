@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="hjl-NH-ZzN">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -22,22 +23,57 @@
                                 <rect key="frame" x="-18" y="0.0" width="1702" height="852"/>
                                 <color key="backgroundColor" name="primaryBackground"/>
                             </imageView>
-                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" distribution="equalSpacing" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="d07-jP-lxp">
-                                <rect key="frame" x="39.333333333333343" y="416" width="314.33333333333326" height="20.333333333333314"/>
+                            <view clipsSubviews="YES" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oIr-5J-k6l">
+                                <rect key="frame" x="0.0" y="362" width="393" height="128"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9bt-LO-iCg">
+                                        <rect key="frame" x="0.0" y="0.0" width="324" height="382"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </imageView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="9bt-LO-iCg" firstAttribute="leading" secondItem="oIr-5J-k6l" secondAttribute="leading" id="jh7-uo-lW2"/>
+                                    <constraint firstItem="9bt-LO-iCg" firstAttribute="top" secondItem="oIr-5J-k6l" secondAttribute="top" id="we5-4F-NVY"/>
+                                    <constraint firstAttribute="trailing" secondItem="9bt-LO-iCg" secondAttribute="trailing" id="zCF-Ve-SRF"/>
+                                </constraints>
+                            </view>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="shavesBottom" translatesAutoresizingMaskIntoConstraints="NO" id="RPW-Jr-36b">
+                                <rect key="frame" x="0.0" y="731" width="393" height="87"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="RPW-Jr-36b" secondAttribute="height" multiplier="131:29" id="O8l-u1-1UM"/>
+                                </constraints>
+                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" axis="vertical" distribution="equalSpacing" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="d07-jP-lxp">
+                                <rect key="frame" x="-1114" y="416" width="2621" height="20.333333333333314"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </stackView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="shavesTop" translatesAutoresizingMaskIntoConstraints="NO" id="wqr-0S-hOo">
+                                <rect key="frame" x="-20" y="104" width="413" height="105"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="wqr-0S-hOo" secondAttribute="height" multiplier="393:100" id="AOU-ta-Ydy"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="d07-jP-lxp" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="7qy-qj-noJ"/>
+                            <constraint firstItem="d07-jP-lxp" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" constant="20" id="7qy-qj-noJ"/>
                             <constraint firstItem="moi-aS-xM6" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="-18" id="GEj-15-0qH"/>
-                            <constraint firstItem="d07-jP-lxp" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="MWu-cy-Lcg"/>
+                            <constraint firstItem="wqr-0S-hOo" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="-20" id="I00-yQ-HyY"/>
+                            <constraint firstItem="oIr-5J-k6l" firstAttribute="top" secondItem="d07-jP-lxp" secondAttribute="top" constant="-30" id="Pf5-D0-zqy"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="wqr-0S-hOo" secondAttribute="trailing" id="TFX-9h-RVp"/>
                             <constraint firstItem="moi-aS-xM6" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="igi-p1-ERC"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="RPW-Jr-36b" secondAttribute="trailing" id="k3l-So-ecd"/>
                             <constraint firstAttribute="bottom" secondItem="moi-aS-xM6" secondAttribute="bottom" id="l9Y-3w-i8v"/>
+                            <constraint firstItem="wqr-0S-hOo" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="45" id="moB-qE-Qdc"/>
+                            <constraint firstItem="RPW-Jr-36b" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="msf-Lf-WGi"/>
+                            <constraint firstItem="RPW-Jr-36b" firstAttribute="top" secondItem="oIr-5J-k6l" secondAttribute="bottom" constant="-20" id="uYK-89-2aL"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="shalvesBackgroundView" destination="oIr-5J-k6l" id="9jv-E6-JFh"/>
                         <outlet property="shelvesStackView" destination="d07-jP-lxp" id="Zjl-jy-ezE"/>
                     </connections>
                 </viewController>
@@ -1282,7 +1318,7 @@
         <image name="hammer" width="768" height="768"/>
         <image name="insideEmpty" width="255" height="100"/>
         <image name="level1Horizontal" width="206" height="203"/>
-        <image name="locker" width="410" height="499"/>
+        <image name="locker" width="360" height="499"/>
         <image name="outsideLargeGreen" width="615" height="143"/>
         <image name="outsideSmallBlue" width="104" height="115"/>
         <image name="outsideSmallBrawn" width="104" height="115"/>
@@ -1290,6 +1326,8 @@
         <image name="paint" width="768" height="768"/>
         <image name="pause" width="47" height="51"/>
         <image name="randomize" width="768" height="768"/>
+        <image name="shavesBottom" width="2472" height="500"/>
+        <image name="shavesTop" width="2577" height="657"/>
         <image name="spinButton" width="95" height="91"/>
         <image name="star" width="20" height="19"/>
         <image name="stopTimer" width="768" height="768"/>

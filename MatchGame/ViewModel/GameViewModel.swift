@@ -11,7 +11,7 @@ struct GameViewModel {
     var timerValue:CGFloat = 0
     var level:LevelModel.Level = .init(number: 0, difficulty: .easy) 
     var itemSize:CGFloat {
-        30//self.shavedData.numSections >= 5 ? (self.shavedData.numSections >= 8 ? 40 : 50) : 58
+        40//self.shavedData.numSections >= 5 ? (self.shavedData.numSections >= 8 ? 40 : 50) : 58
     }
     var initialTimerValue:CGFloat {
         return CGFloat(self.allDataCount * (LevelModel.levelCount.rawValue - Int(CGFloat(level.number / 10))))
@@ -51,15 +51,15 @@ struct GameViewModel {
         case .easy:
             hidden = levelHigh ? 3 : 2
             sections = ((!levelHigh ? 2 : 3) + level.levelDivider)
-            rows = 9
+            rows = 6
         case .medium:
             hidden = levelHigh ? 4 : 3
-            sections = (!levelHigh ? 3 : 4) + level.levelDivider
-            rows = 9
+            sections = (!levelHigh ? 3 : 3) + level.levelDivider
+            rows = 6
         case .hard:
             hidden = levelHigh ? 6 : 5
-            sections = (!levelHigh ? 4 : 5) + level.levelDivider
-            rows = 9
+            sections = (!levelHigh ? 3 : 4) + level.levelDivider
+            rows = 6
         }
         
         return .init(numSections: sections, numRows: rows, hiddenShaves: hidden + Int(self.level.number / 10))

@@ -10,6 +10,7 @@ import SpriteKit
 
 class GameViewController: SuperVC, AudioVCDelegate {
     
+    @IBOutlet weak var shalvesBackgroundView: UIView!
     @IBOutlet private weak var shelvesStackView: UIStackView!
     var dragImageView:UIImageView?
     var drView:DragImageView??
@@ -27,7 +28,7 @@ class GameViewController: SuperVC, AudioVCDelegate {
         DispatchQueue(label: "db", qos: .userInitiated).async {
             self.viewModel.initialUserScore = DB.db.profile.score
         }
-        viewModel.level = self.level
+        viewModel.level = .init(number: 20, difficulty: .easy)//self.level
         createShalveViews()
         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2), execute: {
             self.removeLoadingView {
@@ -267,8 +268,9 @@ fileprivate extension GameViewController {
         viewModel.droppedCount = 0
         let data = viewModel.shavedData
         let types = viewModel.shaves
-        shelvesStackView.backgroundColor = .primaryBackground.withAlphaComponent(0.2)
+//        shelvesStackView.backgroundColor = .primaryBackground.withAlphaComponent(0.2)
         shelvesStackView.layer.cornerRadius = 5
+//        shelvesStackView.backgroundColor = .red
         //        shelvesStackView.layer.borderColor = UIColor.darkContainer.cgColor
         //        shelvesStackView.layer.borderWidth = 3
         for section in 0..<data.numSections {
@@ -320,6 +322,12 @@ fileprivate extension GameViewController {
         }
         self.viewModel.timerValue = CGFloat(self.viewModel.initialTimerValue)
         self.startTimer()
+//here
+        shalvesBackgroundView.translatesAutoresizingMaskIntoConstraints = false
+        let width = ((viewModel.itemSize + 10) * CGFloat(data.numRows)) + 120
+        let heigt = (CGFloat(data.numSections) * (viewModel.itemSize * 2)) + 50
+        shalvesBackgroundView.addConstaits([.left:-20, .width: width, .top:100, .height:heigt])
+        shalvesBackgroundView.backgroundColor = UIColor(patternImage: UIImage(resource: .shavesContent).changeSize(newWidth: width))
     }
     
     func startTimer() {

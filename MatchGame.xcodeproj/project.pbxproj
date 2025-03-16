@@ -155,12 +155,12 @@
 				82D265BF2D868350000E7D75 /* AppDelegate.swift */,
 				82D265C02D868350000E7D75 /* Assets.xcassets */,
 				82D265D42D8683CC000E7D75 /* ComponentView */,
-				82D265E62D8683CC000E7D75 /* Controller */,
 				82D265ED2D8683CC000E7D75 /* DataModel */,
-				82D266012D8683CC000E7D75 /* Mics */,
+				82D266152D8683CC000E7D75 /* ViewModel */,
+				82D265E62D8683CC000E7D75 /* Controller */,
 				82D2660E2D8683CC000E7D75 /* Model */,
 				82D266112D8683CC000E7D75 /* View */,
-				82D266152D8683CC000E7D75 /* ViewModel */,
+				82D266012D8683CC000E7D75 /* Mics */,
 				82D265C12D868350000E7D75 /* Info.plist */,
 				82D265C32D868350000E7D75 /* LaunchScreen.storyboard */,
 				82D265C62D868350000E7D75 /* SceneDelegate.swift */,
@@ -230,9 +230,9 @@
 		82D265E62D8683CC000E7D75 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				82D265E42D8683CC000E7D75 /* GameViewController.swift */,
 				82D265D92D8683CC000E7D75 /* LevelListVC */,
 				82D265E32D8683CC000E7D75 /* Reusable */,
-				82D265E42D8683CC000E7D75 /* GameViewController.swift */,
 				82D265E52D8683CC000E7D75 /* HomeVC.swift */,
 			);
 			path = Controller;

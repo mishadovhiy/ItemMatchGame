@@ -28,7 +28,7 @@ class DragImageView:UIImageView {
             self.backgroundColor = .clear//dropData.type.color
         } else {
             self.image = dropData.type.image
-            self.contentMode = .scaleAspectFit
+            self.contentMode = .bottom
             print(self.image?.size, " terfwds")
             self.backgroundColor = .clear
             //dropData.type.color//.clear
