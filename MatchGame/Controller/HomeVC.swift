@@ -68,7 +68,7 @@ class HomeVC: SuperVC, AudioVCDelegate, UINavigationControllerDelegate {
     }
     
     func updateTimer(_ newValue:Int) {
-        gameTimerLabel.text = "\(newValue)"
+        gameTimerLabel.text = newValue.timeString
     }
     
     override func soundChanged() {

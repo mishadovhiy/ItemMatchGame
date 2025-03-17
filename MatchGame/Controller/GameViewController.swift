@@ -10,6 +10,7 @@ import SpriteKit
 
 class GameViewController: SuperVC, AudioVCDelegate {
     
+    @IBOutlet weak var levelNameLebel: UILabel!
     @IBOutlet weak var shalvesBackgroundView: UIView!
     @IBOutlet private weak var shelvesStackView: UIStackView!
     var dragImageView:UIImageView?
@@ -22,19 +23,22 @@ class GameViewController: SuperVC, AudioVCDelegate {
         self.audio.removeAll()
         parentVC?.settingsPressedAction = nil
     }
+    @IBOutlet weak var shalvesBTNImageView: UIImageView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         DispatchQueue(label: "db", qos: .userInitiated).async {
             self.viewModel.initialUserScore = DB.db.profile.score
         }
-        viewModel.level = .init(number: 20, difficulty: .easy)//self.level
+        viewModel.level = self.level
+        levelNameLebel.text = LevelModel.name(level.number).title
         createShalveViews()
-        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2), execute: {
-            self.removeLoadingView {
-                self.audio(.gameBackground1)?.play()
-            }
-        })
+//        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2), execute: {
+//       //     self.removeLoadingView {
+//                self.audio(.gameBackground1)?.play()
+//       //     }
+//        })
+        self.audio(.gameBackground1)?.play()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -198,6 +202,7 @@ class GameViewController: SuperVC, AudioVCDelegate {
         }
     }
     
+    @IBOutlet weak var shalvesBottom: UIImageView!
     func paintPressed() {
         buyConfirm(.paint) {
             let new = self.dragViews.filter({
@@ -293,7 +298,7 @@ fileprivate extension GameViewController {
                 let shevasImage = UIImageView(image: ._3Shaves)
                 shevasImage.contentMode = .scaleToFill
                 stack.insertSubview(shevasImage, at: 0)
-                shevasImage.addConstaits([.left:-10, .width:CGFloat(data.itemsInRow) * viewModel.itemSize + 20, .height:viewModel.itemSize / 3, .bottom:0])
+                shevasImage.addConstaits([.left:-10, .width:CGFloat(data.itemsInRow) * viewModel.itemSize + 20, .height:viewModel.itemSize / 3, .bottom:10])
                 for _ in 0..<data.hiddenShaves {
                     let changeAt = Int.random(in: 1..<data.itemsInRow)
                     var types = (0..<data.itemsInRow).compactMap({ _ in
@@ -325,9 +330,25 @@ fileprivate extension GameViewController {
 //here
         shalvesBackgroundView.translatesAutoresizingMaskIntoConstraints = false
         let width = ((viewModel.itemSize + 10) * CGFloat(data.numRows)) + 120
-        let heigt = (CGFloat(data.numSections) * (viewModel.itemSize * 2)) + 50
-        shalvesBackgroundView.addConstaits([.left:-20, .width: width, .top:100, .height:heigt])
+        var height = (CGFloat(data.numSections) * (viewModel.itemSize * 2)) + 50
+        let maxHeight:CGFloat = view.frame.height - CGFloat(view.safeAreaInsets.bottom + view.safeAreaInsets.top + 360)
+        if maxHeight <= height {
+            height = maxHeight
+        }
+        
+        shalvesBackgroundView.addConstaits([.top:100])
+
+//        shalvesBackgroundView.subviews.first!.layer.masksToBounds = true
+        shalvesBackgroundView.layer.shadowColor = UIColor.black.cgColor
+        shalvesBackgroundView.layer.shadowOpacity = 0.5
+        shalvesBackgroundView.layer.shadowRadius = 20
+        shalvesBackgroundView.layer.shadowOffset = .init(width: -10, height: 20)
         shalvesBackgroundView.backgroundColor = UIColor(patternImage: UIImage(resource: .shavesContent).changeSize(newWidth: width))
+        shalvesBottom.backgroundColor = UIColor(patternImage: UIImage(resource: .shavesBottom).changeSize(newWidth: shalvesBottom.frame.width))
+        shalvesBackgroundView.layer.cornerRadius = 25
+        shalvesBottom.shadow()
+//        shalvesBackgroundView.layer.masksToBounds = true
+     //   (shalvesBackgroundView.subviews.first as? UIImageView)?.image = UIImage(resource: .shavesContent).changeSize(newWidth: width)
     }
     
     func startTimer() {
@@ -648,7 +669,7 @@ extension GameViewController {
     static func configure(_ lvl: LevelModel.Level) -> GameViewController? {
         let vc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: .init(describing: GameViewController.self)) as? GameViewController
         vc?.level = lvl
-        vc?.addLoadingView()
+//        vc?.addLoadingView()
         return vc
     }
 }

@@ -14,7 +14,7 @@ struct GameViewModel {
         40//self.shavedData.numSections >= 5 ? (self.shavedData.numSections >= 8 ? 40 : 50) : 58
     }
     var initialTimerValue:CGFloat {
-        return CGFloat(self.allDataCount * (LevelModel.levelCount.rawValue - Int(CGFloat(level.number / 10))))
+        return CGFloat(self.allDataCount * 10) //(LevelModel.levelCount.rawValue - Int(CGFloat(level.number / 100))))
     }
     
     var maxLastMovedTime = 5000

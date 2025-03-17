@@ -15,6 +15,10 @@ class LevelCollectionCell: UICollectionViewCell {
     @IBOutlet private weak var difficultiesStack: UIStackView!
     @IBOutlet private weak var levelNumLabel: UILabel!
     var selectedLevel:LevelModel.Level = .init(number: 0, difficulty: .easy)
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+    }
     private var dificultyViews:[UIView]? {
         if self.superview == nil {
             return nil
@@ -43,6 +47,8 @@ class LevelCollectionCell: UICollectionViewCell {
         self.didPress = pressed
         self.selectedImageView.isHidden = selected.number != lvl
         setDifficultyScore(difficulties)
+      //  self.contentView.backgroundColor = UIColor(patternImage: UIImage(resource: .level1Horizontal).changeSize(newWidth: self.contentView.frame.width))
+
     }
     
     override func prepareForReuse() {
@@ -56,12 +62,13 @@ class LevelCollectionCell: UICollectionViewCell {
             if let imageView = self.levelNumLabel.superview?.superview?.superview?.subviews.first(where:{$0 is UIImageView}) as? UIImageView {
                 imageView.shadow(opasity: isSelected ? 1 : 0, color: .black, radius: 3)
             }
-            self.selectionBackgroundView.backgroundColor = isSelected ? .primaryBackground.withAlphaComponent(0.2) : .clear
+            self.selectionBackgroundView.backgroundColor = .clear
+            //isSelected ? .primaryBackground.withAlphaComponent(0.2) : .clear
             self.selectionBackgroundView.layer.cornerRadius = 10
-            self.selectionBackgroundView.layer.borderWidth = isSelected ? 2 : 0
-            self.selectionBackgroundView.layer.borderColor = UIColor.container.cgColor
+//            self.selectionBackgroundView.layer.borderWidth = isSelected ? 2 : 0
+//            self.selectionBackgroundView.layer.borderColor = UIColor.container.cgColor
             self.layer.zoom(value:isSelected ? 1.1 : self.isUserInteractionEnabled ? 1 : 0.7)
-            self.contentView.layer.move(.top, value: isSelected ? -15 : (!self.isUserInteractionEnabled ? 75 : 0))
+            self.contentView.layer.move(.top, value: isSelected ? -5 : (!self.isUserInteractionEnabled ? 75 : 0))
             self.isSelected = isSelected
         }
         if animated {
@@ -113,6 +120,8 @@ class LevelCollectionCell: UICollectionViewCell {
             self.difficultiesStack.addArrangedSubview(stack)
             stack.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(difficultyPressed(_:))))
         }
+        difficultiesStack.layer.cornerRadius = 6
+        difficultiesStack.shadow()
     }
     
     @objc private func difficultyPressed(_ sender:UITapGestureRecognizer) {
@@ -142,7 +151,9 @@ class LevelCollectionCell: UICollectionViewCell {
             }
             let action = {
                 let isSelected = self.isUserInteractionEnabled ? (self.selectedLevel.number == self.difficultiesStack.tag && self.selectedLevel.difficulty.rawValue == view.layer.name) : false
-                view.shadow(opasity: isSelected ? 1 : 0, color: .red)
+//                view.shadow(opasity: isSelected ? 1 : 0, color: .primaryBackground)
+                view.backgroundColor = .darkContainer
+                view.layer.cornerRadius = 4
                 view.layer.move(.top, value: isSelected ? -10 : 0)
 //                if self.selectedLevel.number == self.difficultiesStack.tag {
 //                    view.layer.borderWidth = self.selectedLevel.difficulty.rawValue == view.layer.name ? 1 : 0

@@ -59,7 +59,7 @@ class LevelListVC: SuperVC, AudioVCDelegate {
         super.viewDidLoad()
         dbUpdated()
         loadUI()
-        
+//        collectionView.isPagingEnabled = true
     }
     
     private func dbUpdated(updateParentScore:Bool = false) {
