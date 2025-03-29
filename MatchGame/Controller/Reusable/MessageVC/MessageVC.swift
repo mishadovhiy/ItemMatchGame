@@ -30,7 +30,7 @@ class MessageVC:SuperVC, UINavigationControllerDelegate {
         self.titleLabel.text = screenTitle
         loadUI()
         secondaryButton.isHidden = true
-        primaryButton.isHidden = self.childVC?.screenData.primaryButton?.pressed == nil
+//        primaryButton.isHidden = self.childVC?.screenData.primaryButton?.pressed == nil
         setupPrimaryButtonsStack()
     }
     
@@ -85,7 +85,10 @@ class MessageVC:SuperVC, UINavigationControllerDelegate {
     }
     
     func okPress() {
-        childVC?.screenData.primaryButton?.pressed()
+        let pressed = childVC?.screenData.primaryButton?.pressed ?? {
+            self.dismiss(animated: true)
+        }
+        pressed()
         print(childVC?.screenData.primaryButton != nil ? "okopressed" : "okisnill")
     }
     
@@ -137,7 +140,7 @@ fileprivate extension MessageVC {
         if let stack = primaryButton.superview as? UIStackView,
            !stack.arrangedSubviews.contains(where: {$0.isHidden == false})
         {
-            self.setButtonsStackHidden(true, animated: animated)
+            self.setButtonsStackHidden(false, animated: animated)
             
         } else {
             self.setButtonsStackHidden(false, animated: animated)

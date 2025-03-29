@@ -98,21 +98,22 @@ class GameViewController: SuperVC, AudioVCDelegate {
         navigationController?.parent as? HomeVC
     }
 
+    var levelCompleted = false
     func checkGameCompletion() {
-        if viewModel.gameCompleted {
+        if viewModel.gameCompleted && !levelCompleted {
+            levelCompleted = true
             DispatchQueue(label: "db", qos: .userInitiated).async {
-                
+                var value = DB.db.profile.levels[self.level.number ?? 0] ?? []
+                value.append(self.level.difficulty ?? .easy)
+                var wonCoins = self.viewModel.droppedCount
+                DB.db.profile.score += (wonCoins + ((self.level.number ?? 0) * (self.level.difficulty.number ?? 0)))
+                DB.db.profile.levels.updateValue(value, forKey: self.level.number)
                 DispatchQueue.main.async {
-                    self.navigationController?.pushViewController(LevelCompletionVC.configure(.zero, level: self.level, woneAmount: self.viewModel.droppedCount)!, animated: true)
-                    self.navigationController?.viewControllers.forEach({
-                        if $0 is Self {
-                            $0.removeFromParent()
-                            $0.view.removeFromSuperview()
-                            
-                        }
-                    })
-                    self.navigationController?.viewControllers.removeAll(where: {$0 is Self})
-                    
+                    let level = self.level
+                    let nav = self.navigationController
+                    nav?.popViewController(animated: true)
+                    self.presentAlert(.init(title: "Your have completed level \(self.level.number)", desription: ""), screenTitle: "")
+
                 }
             }
         }
@@ -690,7 +691,7 @@ extension GameViewController {
     override func touchesCancelled(_ touches: Set<UITouch>,
                                    with event: UIEvent?) {
         super.touchesCancelled(touches, with: event)
-        touchesEnded()
+        self.touchesEnded(touches, with: event)
     }
     
     override func touchesEnded(_ touches: Set<UITouch>,
@@ -706,12 +707,6 @@ extension GameViewController {
             $0?.image == nil
         })
         print(test.count, " tyrefds ")
-        test.forEach { view in
-            view?.backgroundColor = .red
-            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(3), execute: {
-                view?.backgroundColor = .clear
-            })
-        }
         let dragHolderView = self.drView
         if let newDestinationView,
            let drView, let drView,
@@ -727,15 +722,15 @@ extension GameViewController {
         setGestureInteraction(newDestinationView)
         
         checkHiddenStack(newDestinationView, isDrop: true, test: true)
-        guard let dragHolderView, let dragHolderView else {
+
+        if let dragHolderView, let dragHolderView {
+            checkHiddenStack(dragHolderView, isDrop: false, test: true)
+        } else {
             dragViews.forEach { view in
                 checkHiddenStack(view!, isDrop: false)
             }
-            return
         }
-        dragViews.forEach { view in
-            checkHiddenStack(view!, isDrop: false)
-        }
+
         DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
             self.checkHasMoves()
         })

@@ -49,6 +49,8 @@ class HomeVC: SuperVC, AudioVCDelegate, UINavigationControllerDelegate {
         }
     }
     
+    var lastUnlockedLevel:LevelModel.Level = .init(number: 0, difficulty: .easy)
+    
     var primaryButtonAction:(()->())? {
         didSet {
             if self.primaryButton.isHidden && primaryButtonAction != nil {

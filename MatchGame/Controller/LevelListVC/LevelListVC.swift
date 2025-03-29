@@ -74,7 +74,8 @@ class LevelListVC: SuperVC, AudioVCDelegate {
                 }
                 var selectedSetted = false
                 selectedSetted = true
-                self.parentVC?.selectedLevel = .init(number: lastKey + 1, difficulty: .easy)
+                self.parentVC?.lastUnlockedLevel = .init(number: lastKey + 3, difficulty: .easy)
+                self.parentVC?.selectedLevel = .init(number: lastKey, difficulty: .easy)
                 print(self.user?.score, " ythrgerfsd")
                 self.collectionView.reloadData()
                 self.collectionView.delegate = self
@@ -109,7 +110,7 @@ extension LevelListVC:UICollectionViewDelegate, UICollectionViewDataSource, UICo
          switch section {
         case 0:return 1
         case 1:
-             var score = self.user?.levels.count ?? 1
+             var score = self.parentVC?.lastUnlockedLevel.number ?? 0
             if score <= LevelModel.minimumUnlockedLvl.rawValue {
                 score = LevelModel.minimumUnlockedLvl.rawValue
             }
