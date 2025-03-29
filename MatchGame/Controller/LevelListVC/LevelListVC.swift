@@ -103,7 +103,7 @@ extension LevelListVC:UICollectionViewDelegate, UICollectionViewDataSource, UICo
         return 3
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return .init(width: view.frame.size.width / (indexPath.section == 0 ? 1.2 : 2), height: view.frame.size.height / (indexPath.section == 0 ? 1.2 : 1.2))
+        return .init(width: view.frame.size.width / (indexPath.section == 0 ? 0.5 : 2), height: view.frame.size.height / (indexPath.section == 0 ? 3 : 3))
     }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
          switch section {

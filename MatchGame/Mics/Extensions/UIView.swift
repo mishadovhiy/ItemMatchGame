@@ -167,6 +167,12 @@ extension UIView {
     private static let blurLayerName = "mainBlur"
     
     func addBluer(style:UIBlurEffect.Style = (.init(rawValue: -1000) ?? .regular), insertAt:Int? = nil) {
+        if let subview = self.subviews.first(where: {
+            $0.layer.name == UIView.blurLayerName
+        }) {
+            subview.alpha = 1
+            return
+        }
         let blurEffect = UIBlurEffect(style: style)
         let bluer = UIVisualEffectView(effect: blurEffect)
         let vibracity = UIVisualEffectView(effect: blurEffect)
@@ -174,6 +180,7 @@ extension UIView {
         let constaints:[NSLayoutConstraint.Attribute : CGFloat] = [.leading:0, .top:0, .trailing:0, .bottom:0]
         vibracity.addConstaits(constaints)
         bluer.layer.name = UIView.blurLayerName
+        
         if let at = insertAt {
             self.insertSubview(bluer, at: at)
         } else {

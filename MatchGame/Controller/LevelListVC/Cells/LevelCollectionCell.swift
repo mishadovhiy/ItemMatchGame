@@ -17,7 +17,8 @@ class LevelCollectionCell: UICollectionViewCell {
     var selectedLevel:LevelModel.Level = .init(number: 0, difficulty: .easy)
     override func awakeFromNib() {
         super.awakeFromNib()
-        
+        difficultiesStack.addBluer(insertAt: 0)
+
     }
     private var dificultyViews:[UIView]? {
         if self.superview == nil {
@@ -37,6 +38,7 @@ class LevelCollectionCell: UICollectionViewCell {
     }
     
     func set(_ lvl:Int, selected:LevelModel.Level, user difficulties:[LevelModel.Difficulty], userLastLevel:Int, isLocked:Bool, pressed:@escaping(_ difficulty:LevelModel.Difficulty, _ lvl:Int)->()) {
+
         self.contentView.alpha = isLocked ? 0.6 : 1
         lockerView.isHidden = !isLocked
         self.isUserInteractionEnabled = !isLocked
@@ -68,7 +70,7 @@ class LevelCollectionCell: UICollectionViewCell {
 //            self.selectionBackgroundView.layer.borderWidth = isSelected ? 2 : 0
 //            self.selectionBackgroundView.layer.borderColor = UIColor.container.cgColor
             self.layer.zoom(value:isSelected ? 1.1 : self.isUserInteractionEnabled ? 1 : 0.7)
-            self.contentView.layer.move(.top, value: isSelected ? -5 : (!self.isUserInteractionEnabled ? 75 : 0))
+//            self.contentView.layer.move(.top, value: isSelected ? 60 : (!self.isUserInteractionEnabled ? 60 : 70))
             self.isSelected = isSelected
         }
         if animated {
@@ -119,6 +121,7 @@ class LevelCollectionCell: UICollectionViewCell {
             topLabel.addConstaits([.height:20])
             self.difficultiesStack.addArrangedSubview(stack)
             stack.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(difficultyPressed(_:))))
+            stack.backgroundColor = .green
         }
         difficultiesStack.layer.cornerRadius = 6
         difficultiesStack.shadow()
@@ -152,7 +155,8 @@ class LevelCollectionCell: UICollectionViewCell {
             let action = {
                 let isSelected = self.isUserInteractionEnabled ? (self.selectedLevel.number == self.difficultiesStack.tag && self.selectedLevel.difficulty.rawValue == view.layer.name) : false
 //                view.shadow(opasity: isSelected ? 1 : 0, color: .primaryBackground)
-                view.backgroundColor = .darkContainer
+                view.backgroundColor = view.superview?.backgroundColor//.withAlphaComponent(0.2)
+                view.addBluer(insertAt: 0)
                 view.layer.cornerRadius = 4
                 view.layer.move(.top, value: isSelected ? -10 : 0)
 //                if self.selectedLevel.number == self.difficultiesStack.tag {
