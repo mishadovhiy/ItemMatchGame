@@ -84,21 +84,22 @@ extension LevelModel {
                 
             }
             static func normalCases(_ lvl:LevelModel.Level) -> [DropType] {
-                let lvType = LevelModel.LvlType(lvl.number)
-                let switchNumber = lvl.levelDivider
-                var allowed = lvType.allowedAssetNames
-                let switchPercent = CGFloat(switchNumber) / CGFloat((LevelModel.levelCount.rawValue / LevelModel.dividerNumber) + 1) * CGFloat(allowed.count)
-                allowed = allowed.prefix(
-                    Int(switchPercent)).compactMap({
-                    $0
-                })
-                print(allowed.count, " fredwsa")
-                print(switchNumber, " rgvfcedsx ", switchPercent)
-                var array:[DropData.DropType] = DropData.DropType.allCases.filter({ type in
-                    allowed.contains(where: {type.rawValue.contains($0)})})
-                //= DragImageView.DropData.DropType.allCases
-                array.removeAll(where: {$0 == .none})
-                return array
+//                let lvType = LevelModel.LvlType(lvl.number)
+//                let switchNumber = lvl.levelDivider
+//                var allowed = lvType.allowedAssetNames
+//                let switchPercent = CGFloat(switchNumber) / CGFloat((LevelModel.levelCount.rawValue / LevelModel.dividerNumber) + 1) * CGFloat(allowed.count)
+//                allowed = allowed.prefix(
+//                    Int(switchPercent)).compactMap({
+//                    $0
+//                })
+//                print(allowed.count, " fredwsa")
+//                print(switchNumber, " rgvfcedsx ", switchPercent)
+//                var array:[DropData.DropType] = DropData.DropType.allCases.filter({ type in
+//                    allowed.contains(where: {type.rawValue.contains($0)})})
+//                //= DragImageView.DropData.DropType.allCases
+//                array.removeAll(where: {$0 == .none})
+                return []
+                //LevelModel.LvlType(lvl.number).allowedAssetNames
             }
             static func randomNormal(_ lvl:LevelModel.Level) -> DropType {
                 return normalCases(lvl).randomElement()!

@@ -14,27 +14,29 @@ extension LevelModel {
         var allowedAssetNames:[String] {
             switch self {
             case .Meat:
-                var values = ["pizza", "pasta", "cheese", "eggs", "garlic", "milk1", "milk", "milk2", "paper"]
-                values.insert(contentsOf: Array(1...3).compactMap({"meat\($0)"}), at:0)
-                return values
+                var values = ["cheaps", "pasta", "pizza", "popcorn", "pizza"]
+                values.append(contentsOf: (0..<26).compactMap({"bakeryUnhealthy\($0)"}))
+                return values.shuffled()
             case .Bakery:
+                return (0..<23).compactMap({"vegs\($0)"}).shuffled()
+            case .DrinksAndFastFood:
+                var values = Array(1...15).compactMap({"fruits\($0)"})
+             //   values.append(contentsOf: (0..<13).compactMap({"fruit\($0)"}))
+                return values.shuffled()
+            case .FruitsANDvegitables:
+                var buttle = ["buttleBlack", "buttleBlue", "buttleBlue2", "buttleBrown", "buttleGreen", "milk1", "milk", "milk2"]
+                buttle.append(contentsOf: (0..<11).compactMap({"water\($0)"}))
+                return buttle.shuffled()
+            case .fastFood:
                 var values = ["bakeryDonate"]
                 values.append(contentsOf: Array(1...9).compactMap({"bakerySweet\($0)"}))
                 values.append(contentsOf: Array(1...2).compactMap({"bakeryBread\($0)"}))
-                return values
-            case .DrinksAndFastFood:
-                return ["cheaps", "pasta", "pizza", "cheese", "buttleBlack", "buttleBlue", "buttleBlue2", "buttleBrown", "bakerySweet1", "bakerySweet2", "bakerySweet3", "bakerySweet4", "buttleGreen"]
-            case .FruitsANDvegitables:
-                var values:[String] = ["orange"]
-                values.append(contentsOf: Array(1...15).compactMap({"fruits\($0)"}))
-                return values
-            case .fastFood:
-                return ["cheaps", "pasta", "pizza", "cheese", "popcorn", "milk", "buttleBrown", "buttleGreen", "bakerySweet1", "bakerySweet2", "bakerySweet3", "bakerySweet4", "eggs"]
-            case .Drinks:
+                return values.shuffled()
+            case .Drinks://replace
                 return ["buttleBlack", "buttleBlue", "buttleBlue2", "buttleBrown", "bakerySweet1", "bakerySweet2", "bakerySweet3", "bakerySweet4", "buttleGreen", "milk1", "milk", "milk2"]
-            case .Milk:
+            case .Milk://replace
                 return ["garlic", "milk1", "milk", "milk2", "eggs", "paper", "buttleGreen", "bakerySweet4", "bakerySweet5", "bakerySweet6", "buttleBlue2", "milk", "cheaps", "pasta"]
-            case .MuilkANDcheese:
+            case .MuilkANDcheese://replace
                 return ["garlic", "milk1", "milk", "milk2", "eggs", "paper", "eggs", "bakerySweet6", "bakerySweet7", "bakerySweet8", "cheese", "cheaps", "buttleGreen", "buttleBlue2", "bakerySweet3"]
             }
         }

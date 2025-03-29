@@ -149,11 +149,11 @@ class GameViewController: SuperVC, AudioVCDelegate {
     
     var canBuyHammer:Bool {
         let types = self.dragViews.filter {
-            $0?.dropData.type != LevelModel.DropData.DropType.none
+            $0?.image != nil
         }
         return types.contains { key in
             types.filter({
-                $0?.dropData.type.rawValue == (key?.dropData.type ?? .default).rawValue
+                $0?.dropData == (key?.dropData ?? "")
             }).count >= 3
         }
     }
@@ -161,11 +161,11 @@ class GameViewController: SuperVC, AudioVCDelegate {
     func hammerPressed() {
         buyConfirm(.hammer) {
             let types = self.dragViews.filter {
-                $0?.dropData.type != LevelModel.DropData.DropType.none
+                $0?.image != nil
             }
             types.forEach { key in
                 let filtered = types.filter({
-                    $0?.dropData.type.rawValue == (key?.dropData.type ?? .default).rawValue
+                    $0?.dropData == (key?.dropData ?? "")
                 })
                 if filtered.count >= 3 {
                     for i in 0..<filtered.count {
@@ -174,7 +174,7 @@ class GameViewController: SuperVC, AudioVCDelegate {
                            let view = filtered[i]
                         {
                             self.checkHiddenStack(view, isDrop: true)
-                            view.dropData.type = .none
+                            view.image = nil
                             self.checkHiddenStack(view, isDrop: false)
                         }
                         
@@ -195,9 +195,9 @@ class GameViewController: SuperVC, AudioVCDelegate {
     func randomizePressed() {
         buyConfirm(.randomize) {
             self.dragViews.filter {
-                $0?.dropData.type != LevelModel.DropData.DropType.none
+                $0?.image != nil
             }.forEach {
-                $0?.dropData.type = .randomNormal(self.level)
+                $0?.dropData = LevelModel.LvlType(self.viewModel.level.number).allowedAssetNames.randomElement() ?? ""
             }
         }
     }
@@ -206,12 +206,12 @@ class GameViewController: SuperVC, AudioVCDelegate {
     func paintPressed() {
         buyConfirm(.paint) {
             let new = self.dragViews.filter({
-                $0?.dropData.type != LevelModel.DropData.DropType.none
+                $0?.image != nil
             }).shuffled()
             let pref = Array(new.prefix(new.count / 2))
             let random = new.randomElement()
             pref.forEach {
-                $0?.dropData.type = random??.dropData.type ?? .default
+                $0?.dropData = random??.dropData ?? ""
             }
         }
     }
@@ -249,7 +249,7 @@ class GameViewController: SuperVC, AudioVCDelegate {
 fileprivate extension GameViewController {
     
     func rowStack(_ rowSection:Int,
-                  _ itemsInRow:Int, hidden:Bool = false, types:[GameViewModel.DropData.DropType]
+                  _ itemsInRow:Int, hidden:Bool = false, types:[String]
     ) -> UIStackView {
         let stack = UIStackView()
         stack.axis = .horizontal
@@ -258,21 +258,19 @@ fileprivate extension GameViewController {
         stack.distribution = shelvesStackView.distribution
         stack.alpha = hidden ? 0.2 - CGFloat(rowSection / 10) : 1
         var types = types
-        if types.isEquel {
-            types = [GameViewModel.DropData.DropType.allCases.first ?? .default,
-                     GameViewModel.DropData.DropType.allCases.last ?? .default,
-                     GameViewModel.DropData.DropType.allCases.first ?? .default]
+        if Array(Set(types)).count <= 1 {
+            types = Array(LevelModel.LvlType(self.level.number).allowedAssetNames.prefix(3))
         }
         types.forEach {
-            addView(data: .init(type: $0), to: stack, hinnden: hidden)
+            addView(data: $0, to: stack, hinnden: hidden)
         }
         return stack
     }
     
-    func createShalveViews() {
+    func createShalveViews() {//here
         viewModel.droppedCount = 0
         let data = viewModel.shavedData
-        let types = viewModel.shaves
+        let types = LevelModel.LvlType(self.level.number).allowedAssetNames
 //        shelvesStackView.backgroundColor = .primaryBackground.withAlphaComponent(0.2)
         shelvesStackView.layer.cornerRadius = 5
 //        shelvesStackView.backgroundColor = .red
@@ -288,9 +286,13 @@ fileprivate extension GameViewController {
             
             for rowSection in 0..<data.rowSections {
                 let sectionFrom = (data.numRows * section) + (data.itemsInRow * rowSection)
-                var typesSection:[GameViewModel.DropData.DropType] = []
+                var typesSection:[String] = []
                 for i in 0..<data.itemsInRow {
-                    typesSection.append(types[sectionFrom + i])
+                    if types.count - 1 > sectionFrom + i {
+                        typesSection.append(types[sectionFrom + i])
+                    } else {
+                        typesSection.append(types.randomElement()!)
+                    }
                 }
                 
                 let stack = rowStack(rowSection, data.itemsInRow, types:typesSection)
@@ -302,7 +304,7 @@ fileprivate extension GameViewController {
                 for _ in 0..<data.hiddenShaves {
                     let changeAt = Int.random(in: 1..<data.itemsInRow)
                     var types = (0..<data.itemsInRow).compactMap({ _ in
-                        types.randomElement() ?? .default
+                        types.randomElement()!
                     })
                     let difficultyOk = self.level.difficulty != .hard || ((horizontalStackView.tag) % 2 == 0)
                     if difficultyOk,
@@ -347,8 +349,30 @@ fileprivate extension GameViewController {
         shalvesBottom.backgroundColor = UIColor(patternImage: UIImage(resource: .shavesBottom).changeSize(newWidth: shalvesBottom.frame.width))
         shalvesBackgroundView.layer.cornerRadius = 25
         shalvesBottom.shadow()
+        if dragViews.count == dragViews.filter({$0?.image != nil}).count {
+            dragViews.randomElement()??.dropData = ""
+        }
+        checkHasMoves()
 //        shalvesBackgroundView.layer.masksToBounds = true
      //   (shalvesBackgroundView.subviews.first as? UIImageView)?.image = UIImage(resource: .shavesContent).changeSize(newWidth: width)
+    }
+    
+    func checkHasMoves() {
+        let types = dragViews.compactMap({$0?.dropData})
+        let typesUnick = Array(Set(types))
+        var found = false
+        typesUnick.forEach { type in
+            if self.dragViews.filter({$0?.dropData == type}).count >= 3 {
+                found = true
+                return
+            }
+        }
+        if !found {
+            let random = typesUnick.randomElement()
+            for _ in 0..<3 {
+                dragViews.randomElement()??.dropData = random!
+            }
+        }
     }
     
     func startTimer() {
@@ -441,14 +465,14 @@ fileprivate extension GameViewController {
             }
         }
         let types = self.dragViews.compactMap {
-            ($0?.dropData)?.type
+            ($0?.dropData)
         }
         
-        var typeCounts:[LevelModel.DropData.DropType:Int] = [:]
-        LevelModel.DropData.DropType.allCases.forEach { type in
-            if type != .none {
+        var typeCounts:[String:Int] = [:]
+        LevelModel.LvlType(viewModel.level.number).allowedAssetNames.forEach { type in
+            if type != "" {
                 let count = types.filter({
-                    $0.rawValue == type.rawValue
+                    $0 == type
                 }).count
                 typeCounts.updateValue(count, forKey: type)
                 if count >= 3 {
@@ -457,7 +481,7 @@ fileprivate extension GameViewController {
             }
         }
         types.forEach({
-            print($0.rawValue)
+            print($0)
         })
         if !hasMoves {
             viewModel.hasMoves = false
@@ -469,13 +493,27 @@ fileprivate extension GameViewController {
         checkGameCompletion()
     }
     
-    private func checkHiddenStack(_ view:UIView, isDrop:Bool = false) {
+    private func checkHiddenStack(_ view:UIView, isDrop:Bool = false, test:Bool = false) {
         let stack = self.stack(subview: view)
         let types = stack?.arrangedSubviews.compactMap({
-            ($0 as? DragImageView)?.dropData.type
+            ($0 as? DragImageView)?.dropData
         })
-        
-        if types.isEquel {
+        print(types, " rhtgedrfsdasfgd ", stack?.tag)
+        let unick = Array(Set(types ?? []))
+        var isEquel = unick.count == 1 || unick.isEmpty || (unick.first == "" && unick.count == 1)
+        let images = stack?.arrangedSubviews.compactMap({
+            ($0 as? DragImageView)?.image != nil
+        })
+        if test {
+            print(types, " uyjthrgerfergethry ")
+        }
+        if images?.isEmpty ?? true {
+            isEquel = true
+        }
+        if stack == nil {
+            isEquel = true
+        }
+        if isEquel {
             if isDrop {
                 self.viewModel.coinsMultiplierInitialTimer()
                 self.switchCoinsMultiplierTimer()
@@ -512,7 +550,7 @@ fileprivate extension GameViewController {
             if !foundHidden {
                 stack?.arrangedSubviews.forEach({
                     if let view = $0 as? DragImageView {
-                        view.dropData = .init(type:.none)
+                        view.dropData = ""
                         self.setGestureInteraction(view)
                     }
                 })
@@ -548,7 +586,7 @@ fileprivate extension GameViewController {
         }
     }
     
-    func addView(data:LevelModel.DropData, to stack:UIStackView, hinnden:Bool) {
+    func addView(data:String, to stack:UIStackView, hinnden:Bool) {
         let newView = DragImageView(dropData: data)
         newView.tag = stack.arrangedSubviews.count
         newView.layer.cornerRadius = 6
@@ -598,10 +636,26 @@ extension GameViewController {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
         drView = dragViews.filter({
-            $0?.dropData.type != LevelModel.DropData.DropType.none
+            $0?.image != nil
         }).first {
             $0?.contains(touches, inView: self.view) ?? false
         }
+        if drView == nil, let view = (dragViews.filter({
+            $0?.image == nil
+        }).first {
+            $0?.contains(touches, inView: self.view) ?? false
+        }) {
+            (view?.superview as? UIStackView)?.arrangedSubviews.forEach({ view in
+                if let view = view as? DragImageView {
+                    view.dropData = ""
+                }
+            })
+            self.checkHiddenStack(view!, isDrop: true, test: true)
+            print("tegrfwd")
+            self.checkHiddenStack(view!, isDrop: false, test:true)
+
+        }
+        print((drView??.superview as? UIStackView)?.arrangedSubviews.compactMap({($0 as? DragImageView)?.dropData}), " gtfdsafsgd ")
         drView??.backgroundColor = .clear
         dragImageView = .init(image: drView??.toImage())
         dragImageView?.frame = .init(origin: .zero, size: .init(width: viewModel.itemSize, height: viewModel.itemSize * viewModel.heightMultiplier))
@@ -615,8 +669,12 @@ extension GameViewController {
     override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesMoved(touches, with: event)
         if drView != nil {
+            let d = dragViews.filter({
+                $0?.image == nil
+            })
+            print(d, " gbbgbdgdfsgsgdsf ")
             dragViews.filter({
-                $0?.dropData.type == LevelModel.DropData.DropType.none
+                $0?.image == nil
             }).forEach {
                 if $0?.contains(touches, inView: self.view) ?? false {
                     $0?.layer.borderColor = UIColor.container.cgColor
@@ -639,17 +697,28 @@ extension GameViewController {
                                with event: UIEvent?) {
         super.touchesEnded(touches, with: event)
         let newDestinationView = dragViews.filter({
-            $0?.dropData.type == LevelModel.DropData.DropType.none
+            $0?.image == nil
         }).first {
             $0?.contains(touches, inView: self.view) ?? false
+        }
+        
+        let test = dragViews.filter({
+            $0?.image == nil
+        })
+        print(test.count, " tyrefds ")
+        test.forEach { view in
+            view?.backgroundColor = .red
+            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(3), execute: {
+                view?.backgroundColor = .clear
+            })
         }
         let dragHolderView = self.drView
         if let newDestinationView,
            let drView, let drView,
            let newDestinationView,
-           drView.dropData.type != .none {
-            newDestinationView.dropData.type = drView.dropData.type
-            drView.dropData.type = .none
+           drView.image != nil {
+            newDestinationView.dropData = drView.dropData
+            drView.dropData = ""
         }
         touchesEnded()
         guard let newDestinationView, let newDestinationView else {
@@ -657,11 +726,19 @@ extension GameViewController {
         }
         setGestureInteraction(newDestinationView)
         
-        checkHiddenStack(newDestinationView, isDrop: true)
+        checkHiddenStack(newDestinationView, isDrop: true, test: true)
         guard let dragHolderView, let dragHolderView else {
+            dragViews.forEach { view in
+                checkHiddenStack(view!, isDrop: false)
+            }
             return
         }
-        checkHiddenStack(dragHolderView)
+        dragViews.forEach { view in
+            checkHiddenStack(view!, isDrop: false)
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(1), execute: {
+            self.checkHasMoves()
+        })
     }
 }
 

@@ -9,32 +9,35 @@ import UIKit
 
 class DragImageView:UIImageView {
     var isAlpha: Bool = false
-    var dropData:LevelModel.DropData {
+    var dropData:String {
         didSet {
             UIView.animate(withDuration: 0.3) {
                 self.typeUpdated()
             }
         }
     }
-    init(dropData: LevelModel.DropData) {
+    init(dropData: String) {
         self.dropData = dropData
         super.init(frame: .zero)
         self.typeUpdated()
     }
     
     func typeUpdated() {
-        if dropData.type == .none {
+        if dropData == "" {
             self.image = nil
             self.backgroundColor = .clear//dropData.type.color
         } else {
-            self.image = dropData.type.image
+            self.image = .init(named: dropData)
             self.contentMode = .bottom
             print(self.image?.size, " terfwds")
             self.backgroundColor = .clear
             //dropData.type.color//.clear
         }
+        if dropData != "" && image == nil {
+            dropData = ""
+        }
         self.contentMode = .scaleAspectFit
-        self.tintColor = dropData.type.color
+        self.tintColor = .clear
     }
     
     required init?(coder: NSCoder) {
