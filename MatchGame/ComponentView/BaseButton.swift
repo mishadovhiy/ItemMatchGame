@@ -136,7 +136,7 @@ class BaseButton:UIButton {
 //                data?.pressed()
 //            })
 //        } else {
-            data?.pressed()
+            data?.pressed?()
 //        }
     }
     

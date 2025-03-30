@@ -10,5 +10,5 @@ import Foundation
 struct ButtonData {
     var title:String?
     var image:String?
-    var pressed:()->()
+    var pressed:(()->())? = nil
 }

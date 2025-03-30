@@ -63,7 +63,7 @@ class GameViewController: SuperVC, AudioVCDelegate {
                         quite()
                     }), tableData: [
                         .init(sectionTitle: "", cells: [
-                            .init(title: "s", type: .message(.init(title: "Are you sure?", desription: "All changes sould be lost")))
+                            .init(title: "", type: .message(.init(title: "Are you sure?", desription: "All changes sould be lost")))
                         ])
                     ])))
                 ])
@@ -77,7 +77,8 @@ class GameViewController: SuperVC, AudioVCDelegate {
         AudioPlayerManager(type: .timeover),
         AudioPlayerManager(type: .coin),
         AudioPlayerManager(type: .error),
-        AudioPlayerManager(type: .panStart)
+        AudioPlayerManager(type: .panStart),
+        AudioPlayerManager(type: .menu)
     ]
     
     var dragViews:[DragImageView?] {
@@ -112,7 +113,7 @@ class GameViewController: SuperVC, AudioVCDelegate {
                     let level = self.level
                     let nav = self.navigationController
                     nav?.popViewController(animated: true)
-                    self.presentAlert(.init(title: "Your have completed level \(self.level.number)", desription: ""), screenTitle: "")
+                    self.presentAlert(.init(title: "Your have completed level \(self.level.number)", desription: ""), screenTitle: "", okButton: .init(title:"OK"))
 
                 }
             }
@@ -640,6 +641,9 @@ extension GameViewController {
             $0?.image != nil
         }).first {
             $0?.contains(touches, inView: self.view) ?? false
+        }
+        if drView != nil {
+            self.audio(.menu)?.play()
         }
         if drView == nil, let view = (dragViews.filter({
             $0?.image == nil

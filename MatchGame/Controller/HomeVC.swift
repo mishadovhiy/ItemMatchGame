@@ -9,6 +9,7 @@ import UIKit
 
 class HomeVC: SuperVC, AudioVCDelegate, UINavigationControllerDelegate {
 
+    @IBOutlet weak var levelSelectionBackgroundView: BaseView!
     @IBOutlet weak var coinsMultiplierConstraint: NSLayoutConstraint!
     @IBOutlet weak var cointsMultiplierLabel: UILabel!
     @IBOutlet weak var progressWidthConstraint: NSLayoutConstraint!
@@ -38,6 +39,9 @@ class HomeVC: SuperVC, AudioVCDelegate, UINavigationControllerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         loadUI()
+        [view, levelSelectionBackgroundView].forEach { view in
+            view?.backgroundColor = .init(patternImage: .backgroundLaminate)
+        }
     }
     
     var selectedLevel:LevelModel.Level = .init(number: 0, difficulty: .easy) {

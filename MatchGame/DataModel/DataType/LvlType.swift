@@ -9,12 +9,12 @@ import Foundation
 
 extension LevelModel {
     enum LvlType:String, CaseIterable {
-        case Meat, Bakery, DrinksAndFastFood, FruitsANDvegitables, fastFood, Drinks, Milk, MuilkANDcheese
+        case cannedFood, Bakery, DrinksAndFastFood, FruitsANDvegitables, fastFood, Drinks, Milk, MuilkANDcheese
         
         var allowedAssetNames:[String] {
             switch self {
-            case .Meat:
-                return (0..<13).compactMap({"bakeryUnhealthy\($0)"}).shuffled()
+            case .cannedFood:
+                return (1..<12).compactMap({"canned\($0)"}).shuffled()
             case .Bakery:
                 return (0..<10).compactMap({"vegs\($0)"}).shuffled()
             case .DrinksAndFastFood:
@@ -27,16 +27,16 @@ extension LevelModel {
                 return (14..<26).compactMap({"bakeryUnhealthy\($0)"})
             case .Drinks:
                 return Array(1...17).compactMap({"fastfood\($0)"})
-            case .Milk://replace
-                return (11..<23).compactMap({"vegs\($0)"}).shuffled()
+            case .Milk:
+                return (1..<11).compactMap({"kitchen\($0)"}).shuffled()
 
-            case .MuilkANDcheese://replace
-                return (13..<26).compactMap({"water\($0)"}).shuffled()
+            case .MuilkANDcheese:
+                return (0..<13).compactMap({"bakeryUnhealthy\($0)"}).shuffled()
             }
         }
         
         var title:String {
-            return rawValue.replacingOccurrences(of: "AND", with: " & ").replacingOccurrences(of: "[A-Z]", with: " $0", options: .regularExpression).capitalized
+            return rawValue.replacingOccurrences(of: "AND", with: " & ").replacingOccurrences(of: "[A-Z]", with: " $0", options: .regularExpression).addSpaceBeforeCapitalizedLetters.capitalized
         }
         
         init(_ lvl:Int) {

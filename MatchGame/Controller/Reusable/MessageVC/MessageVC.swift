@@ -8,8 +8,9 @@
 import UIKit
 
 class MessageVC:SuperVC, UINavigationControllerDelegate {
-    @IBOutlet weak var opacityBackgroundView: UIView!
+    @IBOutlet var backgroundView: [UIView]!
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var opacityBackgroundView: UIView!
     @IBOutlet weak var secondaryButton: UIButton!
     @IBOutlet weak var contentContainerView: UIView!
     @IBOutlet weak var primaryButton: UIButton!
@@ -30,8 +31,11 @@ class MessageVC:SuperVC, UINavigationControllerDelegate {
         self.titleLabel.text = screenTitle
         loadUI()
         secondaryButton.isHidden = true
-//        primaryButton.isHidden = self.childVC?.screenData.primaryButton?.pressed == nil
+        primaryButton.isHidden = self.childVC?.screenData.primaryButton == nil
         setupPrimaryButtonsStack()
+        backgroundView.forEach { view in
+            view.backgroundColor = .init(patternImage: .backgroundLaminate)
+        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -126,6 +130,7 @@ fileprivate extension MessageVC {
         
         guard let vc = MessageContentVC.configure(screenData: self.type.screenData(db: DB.db, okPressed: okPress)) else { return }
         let nav = UINavigationController(rootViewController: vc)
+        nav.view.backgroundColor = .clear
         nav.delegate = self
         contentContainerView.addSubview(nav.view)
         nav.view.addConstaits([.left:0, .right:0, .top:0, .bottom:0, .height:250])
@@ -140,7 +145,7 @@ fileprivate extension MessageVC {
         if let stack = primaryButton.superview as? UIStackView,
            !stack.arrangedSubviews.contains(where: {$0.isHidden == false})
         {
-            self.setButtonsStackHidden(false, animated: animated)
+            self.setButtonsStackHidden(true, animated: animated)
             
         } else {
             self.setButtonsStackHidden(false, animated: animated)

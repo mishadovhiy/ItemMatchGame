@@ -566,7 +566,7 @@
                                                 </constraints>
                                             </stackView>
                                         </subviews>
-                                        <color key="backgroundColor" name="containerColor"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="1Fk-Bv-f1y" secondAttribute="trailing" constant="10" id="LmT-EP-euw"/>
                                             <constraint firstAttribute="bottom" secondItem="1Fk-Bv-f1y" secondAttribute="bottom" constant="10" id="il3-9P-Y8I"/>
@@ -610,7 +610,7 @@
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" secondItem="KJy-0r-CNj" secondAttribute="height" multiplier="1:1" id="GDs-BW-4Rw"/>
                                                                 </constraints>
-                                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                                <inset key="imageEdgeInsets" minX="14" minY="14" maxX="14" maxY="14"/>
                                                                 <state key="normal" image="hammer" backgroundImage="outsideSmallBrawn"/>
                                                                 <connections>
                                                                     <action selector="gameButtonsPressed:" destination="SZd-Ok-BeT" eventType="touchUpInside" id="9Me-S5-xVK"/>
@@ -621,7 +621,7 @@
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" secondItem="Gld-at-BeV" secondAttribute="height" multiplier="1:1" id="fS8-M8-ene"/>
                                                                 </constraints>
-                                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                                <inset key="imageEdgeInsets" minX="12" minY="14" maxX="12" maxY="14"/>
                                                                 <state key="normal" image="stopTimer" backgroundImage="outsideSmallBrawn"/>
                                                                 <connections>
                                                                     <action selector="gameButtonsPressed:" destination="SZd-Ok-BeT" eventType="touchUpInside" id="YTS-IS-mXi"/>
@@ -632,7 +632,7 @@
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" secondItem="ZOw-uQ-r61" secondAttribute="height" multiplier="1:1" id="eXC-El-Ske"/>
                                                                 </constraints>
-                                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                                <inset key="imageEdgeInsets" minX="12" minY="12" maxX="12" maxY="12"/>
                                                                 <state key="normal" image="randomize" backgroundImage="outsideSmallBrawn"/>
                                                                 <connections>
                                                                     <action selector="gameButtonsPressed:" destination="SZd-Ok-BeT" eventType="touchUpInside" id="V6e-Yu-ntV"/>
@@ -643,7 +643,7 @@
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" secondItem="mwu-N3-ed9" secondAttribute="height" multiplier="1:1" id="4kY-9L-kQM"/>
                                                                 </constraints>
-                                                                <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                                                                <inset key="imageEdgeInsets" minX="14" minY="14" maxX="14" maxY="14"/>
                                                                 <state key="normal" image="paint" backgroundImage="outsideSmallBrawn"/>
                                                                 <connections>
                                                                     <action selector="gameButtonsPressed:" destination="SZd-Ok-BeT" eventType="touchUpInside" id="s72-NL-h5v"/>
@@ -657,7 +657,7 @@
                                                 </constraints>
                                             </stackView>
                                         </subviews>
-                                        <color key="backgroundColor" name="containerColor"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="2IN-TA-lLy" firstAttribute="top" secondItem="1z7-DH-MSA" secondAttribute="top" constant="-20" id="4og-6y-Hpk"/>
                                             <constraint firstItem="2IN-TA-lLy" firstAttribute="leading" secondItem="1z7-DH-MSA" secondAttribute="leading" constant="30" id="EoY-z4-n8I"/>
@@ -880,6 +880,7 @@
                         <outlet property="gameTimerLabel" destination="A45-v2-0JY" id="uRd-xB-gyV"/>
                         <outlet property="headerSpacerView" destination="qqH-Cw-M0g" id="ZJq-bt-NL0"/>
                         <outlet property="levelNameLabel" destination="CpS-Gw-HlF" id="m1r-av-DNR"/>
+                        <outlet property="levelSelectionBackgroundView" destination="fUb-nO-5OI" id="oA3-9t-fHc"/>
                         <outlet property="menuButton" destination="X3t-Sz-LuM" id="Hfi-Gh-Zmk"/>
                         <outlet property="primaryButton" destination="RZe-s4-33U" id="oPL-V1-9BS"/>
                         <outlet property="progressView" destination="xte-K9-9It" id="XW5-wZ-rMj"/>
@@ -1171,6 +1172,8 @@
                         <outlet property="primaryButton" destination="Qcx-Vo-WMI" id="g4J-kZ-bsg"/>
                         <outlet property="secondaryButton" destination="mkd-ii-t8Y" id="CqR-ga-8vf"/>
                         <outlet property="titleLabel" destination="3uI-nt-UmK" id="ZF4-2l-uta"/>
+                        <outletCollection property="backgroundView" destination="W6F-RB-t9f" collectionClass="NSMutableArray" id="dBR-XT-gxK"/>
+                        <outletCollection property="backgroundView" destination="LU1-nJ-IBf" collectionClass="NSMutableArray" id="mub-Ga-5QC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AgL-BW-rpF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1326,7 +1329,7 @@
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="80O-uF-xhQ"/>
-                        <color key="backgroundColor" name="containerColor"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="Fwq-A8-Vkv" firstAttribute="top" secondItem="80O-uF-xhQ" secondAttribute="top" id="6yh-Lm-Bkh"/>
                             <constraint firstItem="Fwq-A8-Vkv" firstAttribute="leading" secondItem="80O-uF-xhQ" secondAttribute="leading" id="DCD-Ik-sU1"/>
@@ -1358,22 +1361,22 @@
         <image name="desk" width="177" height="322"/>
         <image name="gameBackground" width="3159" height="745"/>
         <image name="ghost" width="512" height="512"/>
-        <image name="hammer" width="768" height="768"/>
+        <image name="hammer" width="512" height="512"/>
         <image name="insideEmpty" width="255" height="100"/>
-        <image name="level1Horizontal" width="202" height="305"/>
+        <image name="level1Horizontal" width="172" height="434"/>
         <image name="light" width="110" height="49"/>
         <image name="locker" width="360" height="499"/>
         <image name="outsideLargeGreen" width="615" height="143"/>
         <image name="outsideSmallBlue" width="104" height="108"/>
         <image name="outsideSmallBrawn" width="104" height="115"/>
         <image name="outsideSmallGray" width="104" height="115"/>
-        <image name="paint" width="768" height="768"/>
+        <image name="paint" width="512" height="512"/>
         <image name="pause" width="47" height="51"/>
-        <image name="randomize" width="768" height="768"/>
+        <image name="randomize" width="512" height="512"/>
         <image name="shavesTop" width="2577" height="657"/>
         <image name="spinButton" width="95" height="91"/>
         <image name="star" width="20" height="19"/>
-        <image name="stopTimer" width="768" height="768"/>
+        <image name="stopTimer" width="512" height="512"/>
         <image name="utsideRed" width="354" height="115"/>
         <namedColor name="DarkContainerColor">
             <color red="0.29399999976158142" green="0.24300000071525574" blue="0.27799999713897705" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1391,19 +1394,19 @@
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGray3Color">
-            <color red="0.7803921568627451" green="0.7803921568627451" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.78039215689999997" green="0.78039215689999997" blue="0.80000000000000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGreenColor">
-            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemRedColor">
-            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemYellowColor">
             <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="tintColor">
-            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
