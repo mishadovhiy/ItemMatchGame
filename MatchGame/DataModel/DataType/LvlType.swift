@@ -10,29 +10,29 @@ import UIKit
 
 extension LevelModel {
     enum LvlType:String, CaseIterable {
-        case cannedFood, Bakery, DrinksAndFastFood, FruitsANDvegitables, fastFood, Drinks, Milk, MuilkANDcheese
+        case cannedFood, vegitables, fruits, drinks, bakery, fastFood, kitchen, sweets
         
         var allowedAssetNames:[String] {
             switch self {
             case .cannedFood:
                 return (1..<12).compactMap({"canned\($0)"}).shuffled()
-            case .Bakery:
-                return (0..<10).compactMap({"vegs\($0)"}).shuffled()
-            case .DrinksAndFastFood:
+            case .vegitables:
+                return (1..<10).compactMap({"vegs\($0)"}).shuffled()
+            case .fruits:
                 var values = Array(14...21).compactMap({"fruit\($0)"})
                 values.append(contentsOf: (0..<13).compactMap({"ftuit\($0)"}))
                 return values.shuffled()
-            case .FruitsANDvegitables:
-                return (0..<12).compactMap({"water\($0)"}).shuffled()
-            case .fastFood:
+            case .drinks:
+                return (1..<12).compactMap({"water\($0)"}).shuffled()
+            case .bakery:
                 return (14..<26).compactMap({"bakeryUnhealthy\($0)"})
-            case .Drinks:
+            case .fastFood:
                 return Array(1...17).compactMap({"fastfood\($0)"})
-            case .Milk:
+            case .kitchen:
                 return (1..<11).compactMap({"kitchen\($0)"}).shuffled()
 
-            case .MuilkANDcheese:
-                return (0..<13).compactMap({"bakeryUnhealthy\($0)"}).shuffled()
+            case .sweets:
+                return (1..<13).compactMap({"bakeryUnhealthy\($0)"}).shuffled()
             }
         }
         
@@ -46,7 +46,7 @@ extension LevelModel {
             if all.count - 1 >= last {
                 self = all[last]
             } else {
-                self = all.last ?? .Bakery
+                self = all.last ?? .vegitables
             }
             
         }
@@ -54,19 +54,19 @@ extension LevelModel {
             switch self {
             case .cannedFood:
                 1
-            case .Bakery:
+            case .vegitables:
                 2
-            case .DrinksAndFastFood:
+            case .fruits:
                 3
-            case .FruitsANDvegitables:
+            case .drinks:
                 4
-            case .fastFood:
+            case .bakery:
                 5
-            case .Drinks:
+            case .fastFood:
                 6
-            case .Milk:
+            case .kitchen:
                 7
-            case .MuilkANDcheese:
+            case .sweets:
                 8
             }
         }

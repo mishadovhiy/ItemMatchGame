@@ -5,7 +5,6 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -17,29 +16,26 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="launchScreen" translatesAutoresizingMaskIntoConstraints="NO" id="gMo-bk-NfW">
-                                <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="menuBackground1" translatesAutoresizingMaskIntoConstraints="NO" id="gMo-bk-NfW">
+                                <rect key="frame" x="-1868.6666666666667" y="0.0" width="3930.3333333333339" height="852"/>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="gMo-bk-NfW" firstAttribute="width" secondItem="Ze5-6b-2t3" secondAttribute="width" id="Z90-L8-IAu"/>
+                            <constraint firstItem="gMo-bk-NfW" firstAttribute="width" secondItem="Ze5-6b-2t3" secondAttribute="width" multiplier="10" id="Z90-L8-IAu"/>
                             <constraint firstItem="gMo-bk-NfW" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="f7e-sM-iiD"/>
                             <constraint firstAttribute="bottom" secondItem="gMo-bk-NfW" secondAttribute="bottom" id="nqt-bD-kNu"/>
-                            <constraint firstItem="gMo-bk-NfW" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="oOi-kV-I5H"/>
+                            <constraint firstItem="gMo-bk-NfW" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" constant="-100" id="oOi-kV-I5H"/>
                         </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="53" y="375"/>
+            <point key="canvasLocation" x="52.671755725190835" y="374.64788732394368"/>
         </scene>
     </scenes>
     <resources>
-        <image name="launchScreen" width="1531" height="980"/>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
+        <image name="menuBackground1" width="3159" height="745"/>
     </resources>
 </document>
