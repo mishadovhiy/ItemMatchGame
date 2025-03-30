@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 extension LevelModel {
     enum LvlType:String, CaseIterable {
@@ -48,6 +49,33 @@ extension LevelModel {
                 self = all.last ?? .Bakery
             }
             
+        }
+        private var imageNumber:Int {
+            switch self {
+            case .cannedFood:
+                1
+            case .Bakery:
+                2
+            case .DrinksAndFastFood:
+                3
+            case .FruitsANDvegitables:
+                4
+            case .fastFood:
+                5
+            case .Drinks:
+                6
+            case .Milk:
+                7
+            case .MuilkANDcheese:
+                8
+            }
+        }
+        var primaryLevelSelectionImage:UIImage {
+            if let image = UIImage(named: "level\(imageNumber)Horizontal") {
+                return image
+            } else {
+                return UIImage(named: "level2Horizontal")!
+            }
         }
     }
     

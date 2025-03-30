@@ -288,6 +288,7 @@
                                             <outlet property="difficultiesStack" destination="xvt-xR-7H1" id="fGT-OR-kof"/>
                                             <outlet property="levelNumLabel" destination="Zud-5w-zw2" id="OI4-WA-Gs8"/>
                                             <outlet property="lockerView" destination="nXj-JA-dWn" id="fdO-jG-kJz"/>
+                                            <outlet property="primaryImageView" destination="iQk-oY-vdy" id="Prr-9I-DpM"/>
                                             <outlet property="selectedImageView" destination="3Z6-b0-f0d" id="ypi-mz-n4o"/>
                                             <outlet property="selectionBackgroundView" destination="Ebh-sa-rW6" id="TEB-dK-5io"/>
                                         </connections>
@@ -1363,7 +1364,7 @@
         <image name="ghost" width="512" height="512"/>
         <image name="hammer" width="512" height="512"/>
         <image name="insideEmpty" width="255" height="100"/>
-        <image name="level1Horizontal" width="172" height="434"/>
+        <image name="level1Horizontal" width="273" height="427"/>
         <image name="light" width="110" height="49"/>
         <image name="locker" width="360" height="499"/>
         <image name="outsideLargeGreen" width="615" height="143"/>

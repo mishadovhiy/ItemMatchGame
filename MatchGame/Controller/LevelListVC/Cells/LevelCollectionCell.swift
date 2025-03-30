@@ -9,6 +9,7 @@ import UIKit
 
 class LevelCollectionCell: UICollectionViewCell {
     
+    @IBOutlet weak var primaryImageView: UIImageView!
     @IBOutlet weak var lockerView: UIView!
     @IBOutlet weak var selectionBackgroundView: UIView!
     @IBOutlet weak var selectedImageView: UIImageView!
@@ -38,7 +39,7 @@ class LevelCollectionCell: UICollectionViewCell {
     }
     
     func set(_ lvl:Int, selected:LevelModel.Level, user difficulties:[LevelModel.Difficulty], userLastLevel:Int, isLocked:Bool, pressed:@escaping(_ difficulty:LevelModel.Difficulty, _ lvl:Int)->()) {
-
+        primaryImageView.image = LevelModel.LvlType(lvl).primaryLevelSelectionImage
         self.contentView.alpha = isLocked ? 0.6 : 1
         lockerView.isHidden = !isLocked
         self.isUserInteractionEnabled = !isLocked
