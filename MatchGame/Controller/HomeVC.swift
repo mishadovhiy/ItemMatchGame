@@ -167,7 +167,7 @@ extension HomeVC {
             if self.gameStackView.isHidden != hideGame {
                 self.gameStackView.isHidden = hideGame
                 self.progressView.isHidden = hideGame
-                self.gameButtonStackView.isHidden = hideGame
+                self.gameButtonStackView.isHidden = true//hideGame
             }
             if self.headerSpacerView.isHidden != !hideSpacer {
                 self.headerSpacerView.isHidden = !hideSpacer

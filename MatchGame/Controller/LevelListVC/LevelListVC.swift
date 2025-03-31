@@ -81,7 +81,7 @@ class LevelListVC: SuperVC, AudioVCDelegate {
                 self.collectionView.delegate = self
                 self.collectionView.dataSource = self
                 if selectedSetted {
-                    self.collectionView.scrollToItem(at: .init(row: (self.parentVC?.selectedLevel.number ?? 0) - 1, section: 1), at: .centeredHorizontally, animated: true)
+                    self.collectionView.scrollToItem(at: .init(row: (self.parentVC?.selectedLevel.number ?? 0) - 1, section: 0), at: .centeredHorizontally, animated: true)
                     self.collectionView.subviews.first(where: {$0 is UIImageView})?.frame.size = self.collectionView.contentSize
                 } else {
                     self.collectionView.subviews.first(where: {$0 is UIImageView})?.frame.size = self.collectionView.contentSize
@@ -99,23 +99,23 @@ class LevelListVC: SuperVC, AudioVCDelegate {
     }
 }
 
-extension LevelListVC:UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension LevelListVC:UICollectionViewDelegate, UICollectionViewDataSource{//, UICollectionViewDelegateFlowLayout {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 3
+        return 2//3
     }
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return .init(width: view.frame.size.width / (indexPath.section == 0 ? 0.5 : 2), height: view.frame.size.height / (indexPath.section == 0 ? 3 : 3))
-    }
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+//        return .init(width: collectionView.frame.width, height: collectionView.frame.height / 2)//.init(width: view.frame.size.width / (indexPath.section == 0 ? 0.5 : 2), height: view.frame.size.height / (indexPath.section == 0 ? 3 : 3))
+//    }
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
          switch section {
-        case 0:return 1
-        case 1:
+      //  case 0:return 1
+        case 0:
              var score = self.parentVC?.lastUnlockedLevel.number ?? 0
             if score <= LevelModel.minimumUnlockedLvl.rawValue {
                 score = LevelModel.minimumUnlockedLvl.rawValue
             }
             return score + 2
-         case 2:
+         case 1:
              return 1
          default:
              return 0
@@ -123,14 +123,15 @@ extension LevelListVC:UICollectionViewDelegate, UICollectionViewDataSource, UICo
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if indexPath.section == 1 || indexPath.section == 2 {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: .init(describing: LevelCollectionCell.self), for: indexPath) as! LevelCollectionCell
-            cell.set(indexPath.row + 1, selected: self.parentVC?.selectedLevel ?? .init(number: 0, difficulty: .easy), user: indexPath.section == 2 ? [] : self.user?.levels[indexPath.row + 1] ?? [], userLastLevel: DB.db.profile.score, isLocked: indexPath.section == 2, pressed: { difficulty, lvl in
-                if indexPath.section != 2 {
+        if indexPath.section == 0 || indexPath.section == 1 {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: .init(describing: NewLevelListCell.self), for: indexPath) as! NewLevelListCell
+            cell.set(indexPath.row + 1, selected: self.parentVC?.selectedLevel ?? .init(number: 0, difficulty: .easy), user: indexPath.section == 1 ? [] : self.user?.levels[indexPath.row + 1] ?? [], userLastLevel: DB.db.profile.score, isLocked: indexPath.section == 1, pressed: { difficulty, lvl in
+                if indexPath.section != 1 {
                     self.parentVC?.selectedLevel = .init(number: lvl, difficulty: difficulty)
                     collectionView.reloadData()
                 }
             })
+            cell.lockerImageView.isHidden = indexPath.section == 0
             return cell
         } else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: .init(describing: LevelHeadCollectionCell.self), for: indexPath) as! LevelHeadCollectionCell
@@ -142,11 +143,11 @@ extension LevelListVC:UICollectionViewDelegate, UICollectionViewDataSource, UICo
 
 fileprivate extension LevelListVC {
     func loadUI() {
-        let layout = UICollectionViewFlowLayout()
-        layout.minimumInteritemSpacing = 30
-        layout.minimumLineSpacing = 120
-        layout.scrollDirection = .horizontal
-        collectionView.collectionViewLayout = layout
+//        let layout = UICollectionViewFlowLayout()
+//        layout.minimumInteritemSpacing = 0
+//        layout.minimumLineSpacing = 0
+//        layout.scrollDirection = .horizontal
+//        collectionView.collectionViewLayout = layout
         
         let stack = UIStackView()
         stack.axis = .horizontal

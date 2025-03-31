@@ -12,6 +12,7 @@ class LevelCollectionCell: UICollectionViewCell {
     @IBOutlet weak var primaryImageView: UIImageView!
     @IBOutlet weak var lockerView: UIView!
     @IBOutlet weak var selectionBackgroundView: UIView!
+    @IBOutlet weak var imageBackgroundView: UIView!
     @IBOutlet weak var selectedImageView: UIImageView!
     @IBOutlet private weak var difficultiesStack: UIStackView!
     @IBOutlet private weak var levelNumLabel: UILabel!
@@ -19,7 +20,13 @@ class LevelCollectionCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         difficultiesStack.addBluer(insertAt: 0)
-
+        self.contentView.layer.cornerRadius = 25
+        self.contentView.layer.masksToBounds = true
+        imageBackgroundView.addBluer(insertAt: 0)
+        selectionBackgroundView.layer.cornerRadius = 10
+        selectionBackgroundView.layer.masksToBounds = true
+//        primaryImageView.layer.cornerRadius = 20
+//        primaryImageView.layer.masksToBounds = true
     }
     private var dificultyViews:[UIView]? {
         if self.superview == nil {
@@ -40,6 +47,7 @@ class LevelCollectionCell: UICollectionViewCell {
     
     func set(_ lvl:Int, selected:LevelModel.Level, user difficulties:[LevelModel.Difficulty], userLastLevel:Int, isLocked:Bool, pressed:@escaping(_ difficulty:LevelModel.Difficulty, _ lvl:Int)->()) {
         primaryImageView.image = LevelModel.LvlType(lvl).primaryLevelSelectionImage
+//        primaryImageView.isHidden = true
         self.contentView.alpha = isLocked ? 0.6 : 1
         lockerView.isHidden = !isLocked
         self.isUserInteractionEnabled = !isLocked
@@ -48,8 +56,10 @@ class LevelCollectionCell: UICollectionViewCell {
         self.difficultiesStack.tag = lvl
         self.setSelected(selected.number == lvl)
         self.didPress = pressed
-        self.selectedImageView.isHidden = selected.number != lvl
+        self.selectedImageView.isHidden = true//selected.number != lvl
         setDifficultyScore(difficulties)
+//        self.backgroundColor = selected.number != lvl ? .primaryBackground : .container
+
       //  self.contentView.backgroundColor = UIColor(patternImage: UIImage(resource: .level1Horizontal).changeSize(newWidth: self.contentView.frame.width))
 
     }
@@ -64,13 +74,16 @@ class LevelCollectionCell: UICollectionViewCell {
         let animation = {
             if let imageView = self.levelNumLabel.superview?.superview?.superview?.subviews.first(where:{$0 is UIImageView}) as? UIImageView {
                 imageView.shadow(opasity: isSelected ? 1 : 0, color: .black, radius: 3)
+                self.shadow(opasity: isSelected ? 1 : 0, color: .black, radius: 3)
             }
             self.selectionBackgroundView.backgroundColor = .clear
             //isSelected ? .primaryBackground.withAlphaComponent(0.2) : .clear
+            self.contentView.backgroundColor = isSelected ? .container.withAlphaComponent(0.1) : .clear
             self.selectionBackgroundView.layer.cornerRadius = 10
+            self.selectionBackgroundView.backgroundColor = isSelected ? .container.withAlphaComponent(0.1) : .clear
 //            self.selectionBackgroundView.layer.borderWidth = isSelected ? 2 : 0
 //            self.selectionBackgroundView.layer.borderColor = UIColor.container.cgColor
-            self.layer.zoom(value:isSelected ? 1.1 : self.isUserInteractionEnabled ? 1 : 0.7)
+//            self.layer.zoom(value:isSelected ? 1.1 : self.isUserInteractionEnabled ? 1 : 0.7)
 //            self.contentView.layer.move(.top, value: isSelected ? 60 : (!self.isUserInteractionEnabled ? 60 : 70))
             self.isSelected = isSelected
         }
