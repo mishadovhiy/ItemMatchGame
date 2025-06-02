@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23504" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="23727" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23506"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -34,16 +34,16 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O6J-jm-Lt6">
-                                <rect key="frame" x="10" y="720.33333333333337" width="373" height="27.666666666666629"/>
+                                <rect key="frame" x="10" y="686.33333333333337" width="373" height="27.666666666666629"/>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="23"/>
                                 <color key="textColor" name="DarkContainerColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="light" translatesAutoresizingMaskIntoConstraints="NO" id="82l-57-H7M">
-                                <rect key="frame" x="20" y="59" width="110" height="49"/>
+                                <rect key="frame" x="20" y="118" width="110" height="49"/>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="light" translatesAutoresizingMaskIntoConstraints="NO" id="C8O-pd-zYj">
-                                <rect key="frame" x="233" y="59" width="110" height="49"/>
+                                <rect key="frame" x="233" y="118" width="110" height="49"/>
                             </imageView>
                             <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oIr-5J-k6l">
                                 <rect key="frame" x="0.0" y="362" width="393" height="128"/>
@@ -183,7 +183,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="PG0-XN-D6Q">
-                                <rect key="frame" x="0.0" y="159" width="393" height="559"/>
+                                <rect key="frame" x="0.0" y="218" width="393" height="466"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="zS1-vx-9K9">
                                     <size key="itemSize" width="128" height="128"/>
@@ -281,7 +281,7 @@
                                         </connections>
                                     </collectionViewCell>
                                     <collectionViewCell opaque="NO" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="LevelCollectionCell" id="4EO-7f-qEG" customClass="LevelCollectionCell" customModule="MatchGame" customModuleProvider="target">
-                                        <rect key="frame" x="50" y="207" width="360" height="352"/>
+                                        <rect key="frame" x="50" y="114" width="360" height="352"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="g2v-vV-M4Q">
                                             <rect key="frame" x="0.0" y="0.0" width="360" height="352"/>
@@ -405,7 +405,7 @@
                                     </collectionViewCell>
                                 </cells>
                                 <collectionReusableView key="sectionHeaderView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="xB0-Yp-vD0">
-                                    <rect key="frame" x="0.0" y="0.0" width="50" height="559"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="50" height="466"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </collectionReusableView>
                             </collectionView>
@@ -446,10 +446,10 @@
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9UK-Gp-dvY">
-                                        <rect key="frame" x="0.0" y="0.0" width="393" height="106"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="165"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1Fk-Bv-f1y">
-                                                <rect key="frame" x="10" y="56" width="373" height="40"/>
+                                                <rect key="frame" x="10" y="115" width="373" height="40"/>
                                                 <subviews>
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="o1l-CJ-I6Z">
                                                         <rect key="frame" x="0.0" y="0.0" width="373" height="40"/>
@@ -593,7 +593,7 @@
                                                                                         </subviews>
                                                                                     </stackView>
                                                                                     <view clipsSubviews="YES" alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="21C-na-eYg" customClass="BaseView" customModule="MatchGame" customModuleProvider="target">
-                                                                                        <rect key="frame" x="2" y="21.666666666666671" width="98" height="13.333333333333336"/>
+                                                                                        <rect key="frame" x="2" y="21.666666666666657" width="98" height="13.333333333333336"/>
                                                                                         <subviews>
                                                                                             <view clipsSubviews="YES" alpha="0.40000000000000002" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZaI-l4-N7e">
                                                                                                 <rect key="frame" x="0.0" y="0.0" width="98" height="13.333333333333334"/>
@@ -679,7 +679,7 @@
                                         </constraints>
                                     </view>
                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yFP-ke-2Ct" customClass="BaseView" customModule="MatchGame" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="106" width="393" height="657"/>
+                                        <rect key="frame" x="0.0" y="165" width="393" height="564"/>
                                         <color key="backgroundColor" name="primaryBackground"/>
                                         <userDefinedRuntimeAttributes>
                                             <userDefinedRuntimeAttribute type="number" keyPath="borderRadius">
@@ -688,7 +688,7 @@
                                         </userDefinedRuntimeAttributes>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1z7-DH-MSA">
-                                        <rect key="frame" x="0.0" y="763" width="393" height="89"/>
+                                        <rect key="frame" x="0.0" y="729" width="393" height="123"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalCentering" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="2IN-TA-lLy">
                                                 <rect key="frame" x="30" y="-20" width="333" height="70"/>
@@ -710,7 +710,7 @@
                                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="OFW-5t-xo0">
                                                         <rect key="frame" x="53" y="0.0" width="280" height="70"/>
                                                         <subviews>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KJy-0r-CNj">
+                                                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KJy-0r-CNj">
                                                                 <rect key="frame" x="0.0" y="0.0" width="70" height="70"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" secondItem="KJy-0r-CNj" secondAttribute="height" multiplier="1:1" id="GDs-BW-4Rw"/>
@@ -723,7 +723,7 @@
                                                                     <action selector="gameButtonsPressed:" destination="SZd-Ok-BeT" eventType="touchUpInside" id="9Me-S5-xVK"/>
                                                                 </connections>
                                                             </button>
-                                                            <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gld-at-BeV">
+                                                            <button opaque="NO" tag="1" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gld-at-BeV">
                                                                 <rect key="frame" x="70" y="0.0" width="70" height="70"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" secondItem="Gld-at-BeV" secondAttribute="height" multiplier="1:1" id="fS8-M8-ene"/>
@@ -734,7 +734,7 @@
                                                                     <action selector="gameButtonsPressed:" destination="SZd-Ok-BeT" eventType="touchUpInside" id="YTS-IS-mXi"/>
                                                                 </connections>
                                                             </button>
-                                                            <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZOw-uQ-r61">
+                                                            <button opaque="NO" tag="2" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZOw-uQ-r61">
                                                                 <rect key="frame" x="140" y="0.0" width="70" height="70"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" secondItem="ZOw-uQ-r61" secondAttribute="height" multiplier="1:1" id="eXC-El-Ske"/>
@@ -745,7 +745,7 @@
                                                                     <action selector="gameButtonsPressed:" destination="SZd-Ok-BeT" eventType="touchUpInside" id="V6e-Yu-ntV"/>
                                                                 </connections>
                                                             </button>
-                                                            <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mwu-N3-ed9">
+                                                            <button opaque="NO" tag="3" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mwu-N3-ed9">
                                                                 <rect key="frame" x="210" y="0.0" width="70" height="70"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" secondItem="mwu-N3-ed9" secondAttribute="height" multiplier="1:1" id="4kY-9L-kQM"/>
@@ -777,7 +777,7 @@
                                 </constraints>
                             </stackView>
                             <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9A5-cM-zg5">
-                                <rect key="frame" x="0.0" y="151" width="393" height="60"/>
+                                <rect key="frame" x="0.0" y="210" width="393" height="60"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KOB-ie-ShV">
                                         <rect key="frame" x="-1" y="0.0" width="395" height="50"/>
@@ -893,7 +893,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xte-K9-9It">
-                                <rect key="frame" x="86.666666666666686" y="101" width="220" height="40"/>
+                                <rect key="frame" x="86.666666666666686" y="160" width="220" height="40"/>
                                 <subviews>
                                     <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ar3-av-h1t" customClass="BaseView" customModule="MatchGame" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="220" height="12"/>
@@ -1013,10 +1013,10 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </skView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="desk" translatesAutoresizingMaskIntoConstraints="NO" id="FAC-Qw-AWe">
-                                <rect key="frame" x="106.66666666666669" y="-48.666666666666657" width="177" height="322"/>
+                                <rect key="frame" x="106.66666666666669" y="10.333333333333343" width="177" height="322"/>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="NUO-lV-qcC">
-                                <rect key="frame" x="20" y="79" width="353" height="719"/>
+                                <rect key="frame" x="20" y="138" width="353" height="626"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="100" translatesAutoresizingMaskIntoConstraints="NO" id="tUc-CS-2uJ">
                                         <rect key="frame" x="0.0" y="0.0" width="353" height="174.33333333333334"/>
@@ -1068,18 +1068,18 @@
                                         </subviews>
                                     </stackView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nbC-Gl-pDm">
-                                        <rect key="frame" x="0.0" y="174.33333333333331" width="353" height="544.66666666666674"/>
+                                        <rect key="frame" x="0.0" y="174.33333333333329" width="353" height="451.66666666666674"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
                                 </subviews>
                             </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5fp-fX-15W">
-                                <rect key="frame" x="0.0" y="239" width="393" height="613"/>
+                                <rect key="frame" x="0.0" y="298" width="393" height="554"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8Y7-8h-SAX">
-                                <rect key="frame" x="156.66666666666666" y="560.66666666666663" width="80" height="80"/>
+                                <rect key="frame" x="156.66666666666666" y="590" width="80" height="80"/>
                                 <color key="backgroundColor" red="0.29411764705882354" green="0.24313725490196078" blue="0.27843137254901962" alpha="0.39779974489795916" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="80" id="JE2-4a-J5y"/>
@@ -1295,7 +1295,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yHZ-1r-SuF" customClass="BaseView" customModule="MatchGame" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="59" width="393" height="759"/>
+                                <rect key="frame" x="0.0" y="118" width="393" height="666"/>
                                 <color key="backgroundColor" name="primaryBackground"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="borderRadius">
@@ -1304,7 +1304,7 @@
                                 </userDefinedRuntimeAttributes>
                             </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Fwq-A8-Vkv">
-                                <rect key="frame" x="0.0" y="59" width="393" height="759"/>
+                                <rect key="frame" x="0.0" y="118" width="393" height="666"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="eXF-QX-onm">
                                     <size key="itemSize" width="128" height="80"/>
@@ -1431,7 +1431,7 @@
                                 </cells>
                             </collectionView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PopupBackground" translatesAutoresizingMaskIntoConstraints="NO" id="MBE-Jj-sjw">
-                                <rect key="frame" x="0.0" y="59" width="393" height="759"/>
+                                <rect key="frame" x="0.0" y="118" width="393" height="666"/>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="80O-uF-xhQ"/>
