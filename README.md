@@ -1,6 +1,6 @@
 <div style="displey:flex">
-  <img width="30%" src="https://mishadovhiy.com/imgs/grocery/1.PNG">
-<img width="30%" src="https://mishadovhiy.com/imgs/grocery/1.PNG">
+  <img width="30%" src="https://mishadovhiy.com/imgs/grocery/1.png">
+<img width="30%" src="https://mishadovhiy.com/imgs/grocery/2.png">
 </div>
 <h2>ABOUT</h2>
         <p>Grocery match game<br>
@@ -25,3 +25,4 @@ Swipe and match equal items like juicy fruits, fresh veggies, and more! Each lev
 
 https://github.com/user-attachments/assets/49be4cc2-ec34-41d1-9f59-b1dacf8909ac
 
+about project: https://mishadovhiy.com/#grocery 
